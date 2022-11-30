@@ -27,6 +27,15 @@ And you are done on the mods!
 
 Now the last step is to connect your adjusted RF transmitter to your Raspberry Pi. Use the following diagram to help you connect it 
 
+# 	CC1101 -> Raspberry Pi (pin)
+#
+# 	VDD ---> 3.3V ---- (Pin 17)
+#	GDO0 --> GPIO24 -- (Pin 18) [output]
+# 	SI ----> MOSI ---- (Pin 19)
+# 	GND ---> Ground -- (Pin 20)
+# 	SCLK --> SCLK ---- (Pin 23)
+# 	CSn ---> CE0 ----- (Pin 24)
+
 ![Diagram](documentation/Wiring%20Diagram.png)
 
 Note that I used GPIO 4 but you can change the value of __TXGPIO__ to whatever you want if you choose a different way to connect your RF emitter. This is a configuration parameter in operateShutters.conf.
