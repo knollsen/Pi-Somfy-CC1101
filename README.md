@@ -70,7 +70,7 @@ sudo apt-get install git
 Once git is installed on your system, make sure you are in the /home/pi directory, then type:
 
 ```sh
-git clone https://github.com/Nickduino/Pi-Somfy.git
+git clone https://github.com/NoI3ody/Pi-Somfy-CC1101.git
 ```
 
 The above command will make a directory in /home/pi named Pi-Somfy and put the project files in this directory.
