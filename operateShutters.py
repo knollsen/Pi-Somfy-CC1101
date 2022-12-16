@@ -332,7 +332,7 @@ class Shutter(MyLog):
            #add CC1101 code
            with cc1101.CC1101() as transceiver:
                 transceiver.set_base_frequency_hertz(433.42e6)
-                transceiver._write_burst(start_register=0x3E, values= [0x0, 0x34])
+                transceiver.set_output_power((0, 0xC6))
                 with transceiver.asynchronous_transmission():
                     pi.wave_send_once(wid)
                     while pi.wave_tx_busy():

@@ -95,6 +95,11 @@ Next, we need to install the PIGPIO libraries, to do so, type:
 ```sh
 sudo apt-get install pigpio
 ```
+Next, we need to install the CC1101 libraries, to do so, type:
+
+```sh
+sudo pip3 install --user --upgrade cc1101
+```
 
 Next install the required Python Libraries:
 
