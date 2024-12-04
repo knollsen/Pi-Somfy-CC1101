@@ -27,6 +27,15 @@ And you are done on the mods!
 
 Now the last step is to connect your adjusted RF transmitter to your Raspberry Pi. Use the following diagram to help you connect it 
 
+# 	CC1101 -> Raspberry Pi (pin)
+#
+# 	VDD ---> 3.3V ---- (Pin 17)
+#	GDO0 --> GPIO24 -- (Pin 18) [output]
+# 	SI ----> MOSI ---- (Pin 19)
+# 	GND ---> Ground -- (Pin 20)
+# 	SCLK --> SCLK ---- (Pin 23)
+# 	CSn ---> CE0 ----- (Pin 24)
+
 ![Diagram](documentation/Wiring%20Diagram.png)
 
 Note that I used GPIO 4 but you can change the value of __TXGPIO__ to whatever you want if you choose a different way to connect your RF emitter. This is a configuration parameter in operateShutters.conf.
@@ -61,7 +70,7 @@ sudo apt-get install git
 Once git is installed on your system, make sure you are in the /home/pi directory, then type:
 
 ```sh
-git clone https://github.com/Nickduino/Pi-Somfy.git
+git clone https://github.com/NoI3ody/Pi-Somfy-CC1101.git
 ```
 
 The above command will make a directory in /home/pi named Pi-Somfy and put the project files in this directory.
@@ -85,6 +94,11 @@ Next, we need to install the PIGPIO libraries, to do so, type:
 
 ```sh
 sudo apt-get install pigpio
+```
+Next, we need to install the CC1101 libraries, to do so, type:
+
+```sh
+sudo pip3 install --user --upgrade cc1101
 ```
 
 Next install the required Python Libraries:

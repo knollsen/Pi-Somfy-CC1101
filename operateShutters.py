@@ -13,6 +13,7 @@ import socket
 import signal, atexit, traceback
 import logging, logging.handlers
 import threading
+import cc1101
 
 try:
     from myconfig import MyConfig
@@ -61,7 +62,7 @@ class Shutter(MyLog):
         if self.config.TXGPIO != None:
            self.TXGPIO=self.config.TXGPIO # 433.42 MHz emitter
         else:
-           self.TXGPIO=4 # 433.42 MHz emitter on GPIO 4
+           self.TXGPIO=24 # 433.42 MHz emitter on GPIO 24 for CC1101
         self.frame = bytearray(7)
         self.callback = []
         self.shutterStateList = {}
@@ -324,9 +325,19 @@ class Shutter(MyLog):
 
            pi.wave_add_generic(wf)
            wid = pi.wave_create()
-           pi.wave_send_once(wid)
-           while pi.wave_tx_busy():
-              pass
+           # pi.wave_send_once(wid) # remove FS1000A code
+           # while pi.wave_tx_busy():
+           #    pass
+
+           #add CC1101 code
+           with cc1101.CC1101() as transceiver:
+                transceiver.set_base_frequency_hertz(433.42e6)
+                transceiver.set_output_power((0, 0xC6))
+                with transceiver.asynchronous_transmission():
+                    pi.wave_send_once(wid)
+                    while pi.wave_tx_busy():
+                        pass
+           #end add CC1101 code
            pi.wave_delete(wid)
 
            pi.stop()
